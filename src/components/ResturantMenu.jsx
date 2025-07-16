@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
+import { PHOTO_CDN } from "../utils/constants";
 
 const ResturantMenu = () => {
   const [menu, setMenu] = useState(null);
+  const[openIndex, setOpenIndex] = useState(0);
 
-  // const params = useParams();
-  // console.log(params);
-  // console.log(params.resId);
+  function closeOpen(i){
+    if(i == openIndex){
+      setOpenIndex(null);
+    }else{
+      setOpenIndex(i);
+    }
+  }
+
   const { resId } = useParams();
   console.log(resId);
 
@@ -37,18 +44,36 @@ const ResturantMenu = () => {
         const items = section.card?.card?.itemCards;
 
         return (
-          
-            <div key={i} className="menu-part">
-              {title && <h2>{title}</h2>}
+          <div key={i} className="menu-part">
+            <button onClick={() => closeOpen(i)}>click</button>
+            {title && <h2>{title}</h2>}
 
-              {items &&
-                items.map((item) => (
-                  <li key={item.card.info.id} className="menu-part-list">
-                    {item.card.info.name} - Rs. {item.card.info.price / 100}
-                  </li>
-                ))}
+            {
+              i == openIndex && (
+                 <div className="menu-cont">
+                 {items &&
+              items.map((item) => (
+                <div key={item.card.info.id} className="single-menu">
+                  <div className="menu-part-list">
+                    <div className="menu-name">
+                      {item.card.info.name}
+                    </div>
+                    <div className="menu-price">
+                      ₹ {item.card.info.price / 100}
+                    </div>
+                  </div>
+                  <img
+                    src={PHOTO_CDN + item?.card?.info?.imageId}
+                    style={{ width: 200 }}
+                    alt="not available"
+                  />
+                </div>
+              ))}
             </div>
-
+              )
+            }
+           
+          </div>
         );
       })}
     </div>
