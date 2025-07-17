@@ -45,9 +45,11 @@ const ResturantMenu = () => {
 
         return (
           <div key={i} className="menu-part">
-            <button onClick={() => closeOpen(i)}>click</button>
+            <button onClick={() => closeOpen(i)} style={{width:50,padding:5,backgroundColor:"#EE208F"}}>😋</button>
+            {/* title */}
             {title && <h2>{title}</h2>}
 
+            {/* items */}
             {
               i == openIndex && (
                  <div className="menu-cont">
