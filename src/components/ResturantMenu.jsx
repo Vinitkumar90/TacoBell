@@ -6,7 +6,7 @@ import useResturantMenu from "../hooks/useResturantMenu";
 import MenuSection from "./MenuSection";
 
 const ResturantMenu = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const[openSection, setOpenSection] = useState(null);
   const { resId } = useParams();
   const menu = useResturantMenu(resId);
 
@@ -20,9 +20,9 @@ const ResturantMenu = () => {
     return title && itemCards && itemCards.length > 0;
   });
 
-  const onToggle = (index) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  const toggle = (index) => {
+      setOpenSection((prev) => prev!=index ? index : null);
+  }
 
   return (
     <div className=" h-screen flex flex-col items-center pt-4">
@@ -31,9 +31,9 @@ const ResturantMenu = () => {
         <MenuSection
           key={index}
           section={section}
-          isOpen={openIndex === index}
-          onToggle={onToggle}
-          index={index}
+          toggle = {toggle}
+          index = {index}
+          show = {openSection === index}
         />
       ))}
     </div>

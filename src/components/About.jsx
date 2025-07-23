@@ -1,15 +1,15 @@
 import { Component } from "react";
 import User from "./User";
 import UserClass from "./UserClass";
+import userContext from "../context/UserContext";
 
 class About extends Component {
-
   constructor(props) {
     super(props);
     console.log("about constructor");
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("about component did mount");
   }
 
@@ -18,11 +18,15 @@ class About extends Component {
     return (
       <div className="About-container">
         <h1>Taco bell about us page </h1>
+        <userContext.Consumer>
+          {({ loggedInUser }) => (
+            <h1 className="font-semibold">{loggedInUser}</h1>
+          )}
+        </userContext.Consumer>
         <UserClass uname="first(class)" location="chicksPur" />
       </div>
     );
   }
-
 }
 
 // const About = () => {

@@ -1,6 +1,9 @@
 import { PHOTO_CDN } from "../utils/constants";
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 const ResturantCard = (props) => {
+  const {loggedInUser} = useContext(UserContext)
   const { resData } = props;
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, areaName } =
     resData?.info;
@@ -23,6 +26,7 @@ const ResturantCard = (props) => {
         </h5>
         <h5 className="text-xs font-medium">{areaName}</h5>
         <h5 className="text-xs font-medium">{deliveryTime}min</h5>
+        <h5 className="text-[12px]">{loggedInUser}</h5>
       </div>
     </div>
   );

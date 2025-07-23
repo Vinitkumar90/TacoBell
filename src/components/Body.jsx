@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ResturantCard, { promotedCard } from "./ResturantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import UserContext from "../context/UserContext";
 
 const Body = () => {
+  const{loggedInUser,setUserName} = useContext(UserContext)
   //local state variable - super powerful variable
   const [resL, setResLis] = useState([]);
   const [filterResLis, setFilterResLis] = useState([]);
@@ -76,6 +78,9 @@ const Body = () => {
         >
           Highest Rated Restaurants
         </button>
+        <div>
+          <input className="border border-black" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}  />
+        </div>
       </div>
 
       <div className="flex flex-wrap pt-2 p-8 justify-center">
