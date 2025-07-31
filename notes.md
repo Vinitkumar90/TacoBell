@@ -22,3 +22,12 @@
 
 - dont use index for keys(will work but is not recommended)
 - not using key(not acceptable) <<< index as key <<< unique id(Best pracitse)
+
+
+# Redux Toolkit
+    - Install @reduxjs/toolkit and react-redux
+    - Build our store
+    - Connect our store to our app
+    - create a slice(cart slice)
+    - dispatch(action)
+    - read data using Selector(subscribing to the part of a store)
